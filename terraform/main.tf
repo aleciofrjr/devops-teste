@@ -19,7 +19,22 @@ provider "aws" {
 
 # Criando repositório ECR
 resource "aws_ecr_repository" "repo-devops_teste" {
-    name = "repo-devops_teste"
+    name = var.repository_name
+}
+
+# Criando cluste ECS
+resource "aws_ecs_cluster" "cluster-devops_teste" {
+    name = var.cluster_name
+}
+
+# Build da imagem e push no ECR
+resource "docker_registry_image" "image-devops_teste" {
+    name = var.image_name
+    
+    build {
+        context     = "../"
+        dockerfile  = "Dockerfile"
+    }
 }
 
 
