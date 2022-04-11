@@ -13,7 +13,7 @@ terraform {
 
 provider "aws" {
     shared_credentials_file = "~/.aws/credentials"
-    profile = "DevOps_Teste"
+    profile = "Nginx-Server"
     region = var.instance_region
 }
 
