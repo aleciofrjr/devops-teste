@@ -11,12 +11,24 @@ terraform {
   }
 }
 
-resource "docker_image" "centos" {
-    name = "centos:latest"
+provider "aws" {
+    shared_credentials_file = "~/.aws/credentials"
+    profile = "DevOps_Teste"
+    region = var.instance_region
 }
 
-resource "docker_container" "centos" {
-    image   = "docker_image.centos.latest"
-    name    = "centos_container"
+# Criando repositório ECR
+resource "aws_ecr_repository" "repo-devops_teste" {
+    name = "repo-devops_teste"
 }
+
+
+#resource "docker_image" "centos" {
+#    name = "centos:latest"
+#}
+
+#resource "docker_container" "centos" {
+#    image   = "docker_image.centos.latest"
+#    name    = "centos_container"
+#}
 
