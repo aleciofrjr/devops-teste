@@ -13,8 +13,10 @@ jobs:
           working_directory: ~/project/app
           name: Test
           command: npm test
-          persist_to_workspace:
-            root: ~/project/app
+      - persist_to_workspace:
+          root: ~/project/app
+          paths:
+            - ""      
   build:
     docker:
       - image: cimg/node:current
