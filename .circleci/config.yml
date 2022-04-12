@@ -41,6 +41,7 @@ jobs:
       - attach_workspace:
             at: .
       - run:
+          working_directory: ~/project/app
           command: npm start
 workflows:
   build_and_test:
