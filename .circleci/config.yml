@@ -12,17 +12,41 @@ jobs:
       - run:
           working_directory: ~/project/app
           name: Test
-          command: npm test
-  # deploy:
-  #   docker:
-  #     - image: cimg/node:current
-  #   steps:
-  #     - attach_workspace:
-  #         at: ~/app
-  #     - run:
-  #         name: deploy
-  #         command: npm start
+          command: npm test  
+      - run:
+          working_directory: ~/project/app
+          command: ls
+      - run:
+          working_directory: ~/project/app
+          command: pwd        
+  build:
+    docker:
+      - image: cimg/node:current
+    steps:
+      - checkout
+      - run:
+          working_directory: ~/project/app
+          command: pwd    
+      - run:
+          working_directory: ~/project/app
+          command: npm install
+      - persist_to_workspace:
+          root: .
+          paths:
+            - '*'          
+  deploy:
+      docker:
+       - image: cimg/node:current
+      steps:
+      - attach_workspace:
+            at: .
+      - run:
+          command: npm start
 workflows:
   build_and_test:
     jobs:
       - test
+      - build
+    #  - deploy:
+    #     requires:
+    #        - build
