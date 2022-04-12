@@ -9,9 +9,9 @@ jobs:
       - image: cimg/node:current
     steps:
       - persist_to_workspace:
-          root: ~/project/app 
+          root: .
           paths:
-            - echo-output       
+            - project/*      
       - checkout
       - run:
           working_directory: ~/project/app
@@ -22,7 +22,7 @@ jobs:
       - image: cimg/node:current
     steps:
       - attach_workspace:
-          at: ~/project/app
+          at: ./
       - run:
           working_directory: ~/project/app
           command: ls
