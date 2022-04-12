@@ -43,7 +43,7 @@ jobs:
               docker build -t ghcr.io/aleciofrjr/devops-teste:${CIRCLE_SHA1} .
         - run:
             name: tag image
-              command: docker tag ghcr.io/aleciofrjr/devops-teste:${CIRCLE_SHA1} ghcr.io/aleciofrjr/devops-teste:latest
+            command: docker tag ghcr.io/aleciofrjr/devops-teste:${CIRCLE_SHA1} ghcr.io/aleciofrjr/devops-teste:latest
         # push no git verificar documentação git
         - run:
             name: authenticate github package
