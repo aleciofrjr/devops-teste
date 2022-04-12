@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  devops-teste:
+    build: .
+    container_name: DevOps-Teste
+    ports:
+      - "3000:3000"
+  redis:
+    image: ghcr.io/aleciofrjr/devops-teste:latest
