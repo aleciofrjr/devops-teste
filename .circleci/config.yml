@@ -17,6 +17,7 @@ jobs:
     docker:
       - image: cimg/node:current
     steps:
+    - checkout
     - run:
         working_directory: ~/project/app
         command: npm install
