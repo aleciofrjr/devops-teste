@@ -16,7 +16,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - " ~/project/app"      
+            - ~/project/app      
   build:
     docker:
       - image: cimg/node:current
