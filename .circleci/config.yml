@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - run:
-        command: ls
+          command: ls
       - run:
           name: Test
           command: npm test
