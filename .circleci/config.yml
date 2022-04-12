@@ -26,7 +26,6 @@ workflows:
   version: 1.0
   build_and_test:
     jobs:
-      - build
       - test:
           requires:
             - teste
