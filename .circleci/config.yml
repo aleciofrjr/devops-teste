@@ -10,13 +10,13 @@ jobs:
     steps:
       - checkout
       - run:
-          working_directory: ~/project/app
+          working_directory: 
           name: Test
           command: npm test  
       - persist_to_workspace:
-          root: .
+          root: ~/project/app
           paths:
-            - project/app* 
+            -  project/*
   build:
     docker:
       - image: cimg/node:current
