@@ -13,10 +13,6 @@ jobs:
           working_directory: ~/project/app
           name: Test
           command: npm test  
-      - persist_to_workspace:
-          root: .
-          paths:
-            -  .
       - run:
           working_directory: ~/project/app
           command: ls
@@ -27,33 +23,25 @@ jobs:
     docker:
       - image: cimg/node:current
     steps:
+      - checkout
       - run:
           working_directory: ~/project/app
-          command: pwd        
-      - attach_workspace:
-          at: ./*
-      - run:
-          working_directory: ~/project/app
-          command: ls
+          command: pwd    
       - run:
           working_directory: ~/project/app
           command: npm install
+      - persist_to_workspace:
+          root: .
+          paths:
+            - '*'          
+  deploy:
+      docker:
+       - image: cimg/node:current
+      steps:
+      - attach_workspace:
+            at: .
       - run:
-          working_directory: ~/project/app
           command: npm start
-#    - save_caches:
-#        paths:
-#          - ~/project/app
-#        keys: dependencies-{{ checksum "package.json" }}
-#  deploy:
-#    docker:
-#       - image: cimg/node:current
-#     steps:
-#      - restore_caches:
-#          keys:
-#          - dependencies-{{ checksum "package.json" }}
-#      - run:
-#          command: npm start
 workflows:
   build_and_test:
     jobs:
