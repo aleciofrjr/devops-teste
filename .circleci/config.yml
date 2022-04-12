@@ -10,8 +10,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: ls
-      - run:
+          working_directory: ~/project/app
           name: Test
           command: npm test
   # deploy:
