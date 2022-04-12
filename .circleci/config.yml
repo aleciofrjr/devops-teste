@@ -16,7 +16,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            -  /temp/app
+            -  .
       - run:
           working_directory: ~/project/app
           command: ls      
@@ -25,7 +25,7 @@ jobs:
       - image: cimg/node:current
     steps:
       - attach_workspace:
-          at: /temp/app
+          at: ./*
       - run:
           working_directory: ~/project/app
           command: ls
