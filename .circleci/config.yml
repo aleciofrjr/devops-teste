@@ -17,12 +17,15 @@ jobs:
           root: .
           paths:
             -  .
+      - run:
+          working_directory: ~/project/app
+          command: ls      
   build:
     docker:
       - image: cimg/node:current
     steps:
       - attach_workspace:
-          at: ./
+          at: ~/project/app
       - run:
           working_directory: ~/project/app
           command: ls
