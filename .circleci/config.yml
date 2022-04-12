@@ -25,6 +25,9 @@ jobs:
           at: .
       - run:
           working_directory: ~/project/app
+          command: ls
+      - run:
+          working_directory: ~/project/app
           command: npm install
       - run:
           working_directory: ~/project/app
