@@ -1,8 +1,4 @@
 version: 2.1
-
-orbs:
-  node: circleci/node@3.0.1
-
 jobs:
   test:
     docker:
@@ -38,6 +34,7 @@ jobs:
       docker:
         - image: cimg/node:current
       steps:
+        - setup_remote_docker
         - attach_workspace:
             at: .
         - run:
