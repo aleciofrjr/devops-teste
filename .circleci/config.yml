@@ -22,7 +22,7 @@ jobs:
       - image: cimg/node:current
     steps:
       - attach_workspace:
-          at: ~/project/app
+          at: .
       - run:
           working_directory: ~/project/app
           command: npm install
