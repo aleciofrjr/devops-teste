@@ -11,7 +11,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - project/*      
+            - project/app*
       - checkout
       - run:
           working_directory: ~/project/app
