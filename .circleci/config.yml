@@ -47,7 +47,7 @@ jobs:
             command: docker login ghcr.io -u aleciofrjr --password ${GIT_HUB_PACKAGES}
         - run:
             name: push docker image
-            command: docker push ghcr.io/aleciofrjr/devops-teste:${CIRCLE_SHA1} .
+            command: docker push ghcr.io/aleciofrjr/devops-teste:${CIRCLE_SHA1}
         - persist_to_workspace:
             root: .
             paths:
