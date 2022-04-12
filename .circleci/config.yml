@@ -35,20 +35,19 @@ jobs:
           paths:
             - '*'
   build_image:
-        docker:
-      - image: cimg/node:current
-    steps:
-      - attach_workspace:
+      docker:
+        - image: cimg/node:current
+      steps:
+        - attach_workspace:
             at: .
-      - run:
-          working_directory: ~/project
-          command: | 
-            docker build -t ghcr.io/OWNER/devops-teste:$(git rev-parse --short HEAD) . 
-      - persist_to_workspace:
-          root: .
-          paths:
-            - '*'
-            
+        - run:
+            working_directory: ~/project
+            command: | 
+              docker build -t ghcr.io/OWNER/devops-teste:${CICLE_SHA1} .
+        - persist_to_workspace:
+            root: .
+            paths:
+              - '*' 
   deploy:
       docker:
        - image: cimg/node:current
