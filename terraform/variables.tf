@@ -16,9 +16,15 @@ variable "cluster_name" {
     default     = "cluster-devops_teste"
 }
 
-variable "image_name" {
-    description = "Nome cluster ECS"
+variable "instance_name" {
+    description = "Nome instância EC2"
     type        = string
-    default     = "image-devops_teste"
+    default     = "ec2_name"
+}
+
+variable "image_name" {
+    description = "Imagem da instância EC2"
+    type        = string
+    default     = "ami-0892d3c7ee96c0bf7"
 }
 
