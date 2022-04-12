@@ -8,15 +8,15 @@ jobs:
     docker:
       - image: cimg/node:current
     steps:
-      - persist_to_workspace:
-          root: .
-          paths:
-            - project/app*
       - checkout
       - run:
           working_directory: ~/project/app
           name: Test
-          command: npm test   
+          command: npm test  
+      - persist_to_workspace:
+          root: .
+          paths:
+            - project/app* 
   build:
     docker:
       - image: cimg/node:current
