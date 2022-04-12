@@ -26,7 +26,4 @@ workflows:
   version: 1.0
   build_and_test:
     jobs:
-      - test:
-          requires:
-            - teste
-            # - deploy
+      - test
