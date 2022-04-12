@@ -13,16 +13,31 @@ jobs:
           working_directory: ~/project/app
           name: Test
           command: npm test
-  # deploy:
-  #   docker:
-  #     - image: cimg/node:current
-  #   steps:
-  #     - attach_workspace:
-  #         at: ~/app
-  #     - run:
-  #         name: deploy
-  #         command: npm start
+  build:
+    docker:
+      - image: cimg/node:current
+    steps:
+    - run:
+        working_directory: ~/project/app
+        command: npm install
+    - save_cache:
+        paths:
+          - ~/project/app
+        keys: dependencies-{{ checksum "package.json" }}
+  deploy:
+     docker:
+       - image: cimg/node:current
+     steps:
+      - restore_cache:
+          keys:
+          - dependencies-{{ checksum "package.json" }}
+      - run:
+          command: npm start
 workflows:
   build_and_test:
     jobs:
       - test
+      - build
+      - deploy:
+          requires:
+            - build
