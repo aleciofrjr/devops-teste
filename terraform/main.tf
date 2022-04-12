@@ -30,6 +30,12 @@ resource "aws_instance" "ubuntu_server" {
         host    = self.public_ip
     }
 
+# Copiando docker-compose para instância EC2
+    provisioner "file" {
+        source      = "../docker-compose.yml"
+        destination = "docker-compose.yml"
+    }
+
 # Efetuando a instalação do docker & docker-compose na instância EC2
     provisioner "remote-exec" {
         inline = [
