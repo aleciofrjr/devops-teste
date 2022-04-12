@@ -21,6 +21,8 @@ jobs:
     - run:
         working_directory: ~/project/app
         command: npm install
+    - run:    
+        command: npm start
 #    - save_caches:
 #        paths:
 #          - ~/project/app
