@@ -47,7 +47,7 @@ jobs:
         # push no git verificar documentação git
         - run:
             name: authenticate github package
-            command: docker login ghcr.io -u aleciofrjr --password ${GIT_HUB_PACKAGES}
+            command: docker login ghcr.io -u aleciofrjr --password ${GIT_HUB_PKGS}
         - run:
             name: push docker image
             command: docker push ghcr.io/aleciofrjr/devops-teste --all-tags
