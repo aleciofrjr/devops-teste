@@ -6,24 +6,16 @@ jobs:
     steps:
       - checkout
       - run:
+          name: fake Test
           working_directory: ~/project/app
-          name: Test
-          command: npm test  
-      - run:
-          working_directory: ~/project/app
-          command: ls
-      - run:
-          working_directory: ~/project/app
-          command: pwd        
+          command: npm test     
   build:
     docker:
       - image: cimg/node:current
     steps:
-      - checkout
+      - checkout    
       - run:
-          working_directory: ~/project/app
-          command: pwd    
-      - run:
+          name: install devDependencies
           working_directory: ~/project/app
           command: npm install
       - persist_to_workspace:
@@ -38,13 +30,13 @@ jobs:
         - attach_workspace:
             at: .
         - run:
+            name: build image
             working_directory: ~/project
             command: | 
               docker build -t ghcr.io/aleciofrjr/devops-teste:${CIRCLE_SHA1} .
         - run:
             name: tag image
             command: docker tag ghcr.io/aleciofrjr/devops-teste:${CIRCLE_SHA1} ghcr.io/aleciofrjr/devops-teste:latest
-        # push no git verificar documentação git
         - run:
             name: authenticate github package
             command: docker login ghcr.io -u aleciofrjr --password ${GIT_HUB_PKGS}
@@ -62,6 +54,7 @@ jobs:
       - attach_workspace:
             at: .
       - run:
+          name: deploy app
           working_directory: ~/project/app
           command: npm start
 workflows:
