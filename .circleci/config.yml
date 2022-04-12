@@ -17,12 +17,12 @@ jobs:
     docker:
       - image: cimg/node:current
     steps:
-    - checkout
-    - run:
-        working_directory: ~/project/app
-        command: npm install
-    - run:    
-        command: npm start
+      - checkout
+      - run:
+          working_directory: ~/project/app
+          command: npm install
+      - run:    
+          command: npm start
 #    - save_caches:
 #        paths:
 #          - ~/project/app
