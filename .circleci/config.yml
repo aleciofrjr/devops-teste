@@ -54,16 +54,11 @@ jobs:
       - attach_workspace:
             at: .
       - run:
-          name: terraform init
+          name: Execute terraform
           working_directory: ~/project
           command: |
             cd terraform
             terraform init
-      - run:
-          name: terraform apply
-          working_directory: ~/project
-          command: |
-            cd terraform
             terraform apply --auto-approve
 workflows:
   build_and_test:
