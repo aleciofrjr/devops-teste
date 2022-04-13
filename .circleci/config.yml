@@ -61,7 +61,9 @@ jobs:
             terraform init
       - run:
           name: terraform apply
-          command: terraform apply --auto-approve
+          command: |
+            pwd
+            terraform apply --auto-approve
 workflows:
   build_and_test:
     jobs:
