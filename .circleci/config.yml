@@ -49,10 +49,17 @@ jobs:
               - '*' 
   deploy:
       docker:
-       - image: cimg/node:current
+       - image: hashicorp/terraform:0.14.11
       steps:
       - attach_workspace:
             at: .
+      - run:
+          name: terraform init
+          working_directory: ~/project/app
+          command:  terraform init
+      - run:
+          name: terraform apply
+          command: terraform apply --auto-approve  
       - run:
           name: authenticate instance EC2 in github package
           working_directory: ~/project/app
