@@ -58,20 +58,13 @@ jobs:
           working_directory: ~/project/app
           command: |
             ls ~/devops-teste
-            cd ~/devops-teste
+            cd ~/devops-teste/terraform
             terraform init
       - run:
           name: terraform apply
           command: |
-            cd ~/devops-teste
-            terraform apply --auto-approve  
-      - run:
-          name: authenticate instance EC2 in github package
-          working_directory: ~/project/app
-          command:  ssh -o StrictHostKeyChecking=no ubuntu@${outputs.tf} "sudo docker login ghcr.io -u aleciofrjr --password ${GIT_HUB_PKGS}"
-      - run:
-          name: Execute docker-compose
-          command: ssh -o StrictHostKeyChecking=no ubuntu@${outputs.tf} "cd devops-teste && sudo docker-compose up"
+            cd ~/devops-teste/terraform
+            terraform apply --auto-approve
 workflows:
   build_and_test:
     jobs:
