@@ -57,12 +57,13 @@ jobs:
           name: terraform init
           working_directory: ~/project/app
           command: |
-            cd devops-teste
+            cd ~/devops-teste
+            cd ~/devops-teste
             terraform init
       - run:
           name: terraform apply
           command: |
-            cd devops-teste
+            cd ~/devops-teste
             terraform apply --auto-approve  
       - run:
           name: authenticate instance EC2 in github package
