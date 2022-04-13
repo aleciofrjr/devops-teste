@@ -55,15 +55,12 @@ jobs:
             at: .
       - run:
           name: terraform init
-          working_directory: ~/project/app
-          command: |
-            cd ../terraform
-            terraform init
+          working_directory: ~/project/terraform
+          command: terraform init
       - run:
           name: terraform apply
-          command: |
-            pwd
-            terraform apply --auto-approve
+          working_directory: ~/project/terraform
+          command: terraform apply --auto-approve
 workflows:
   build_and_test:
     jobs:
