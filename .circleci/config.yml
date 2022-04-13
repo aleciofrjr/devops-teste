@@ -57,7 +57,7 @@ jobs:
           name: terraform init
           working_directory: ~/project/app
           command: |
-            cd ~/devops-teste
+            ls ~/devops-teste
             cd ~/devops-teste
             terraform init
       - run:
