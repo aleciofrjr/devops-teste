@@ -54,9 +54,12 @@ jobs:
       - attach_workspace:
             at: .
       - run:
-          name: deploy app
+          name: authenticate instance EC2 in github package
           working_directory: ~/project/app
-          command: npm start
+          command:  ssh -o StrictHostKeyChecking=no ubuntu@<output.tf sudo docker login ghcr.io -u aleciofrjr --password ${GIT_HUB_PKGS} 
+      - run:
+          name: Execute docker-compose
+          command: ssh -o StrictHostKeyChecking=no ubuntu@<output.tf> "cd devops-teste && sudo docker-compose up"
 workflows:
   build_and_test:
     jobs:

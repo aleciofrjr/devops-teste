@@ -30,12 +30,6 @@ resource "aws_instance" "ubuntu_server" {
         host    = self.public_ip
     }
 
-# Copiando docker-compose para instância EC2
-    provisioner "file" {
-        source      = "../docker-compose.yml"
-        destination = "docker-compose.yml"
-    }
-
 # Efetuando a instalação do docker & docker-compose na instância EC2
     provisioner "remote-exec" {
         inline = [
@@ -45,11 +39,20 @@ resource "aws_instance" "ubuntu_server" {
             "curl -fsSL https://get.docker.com -o get-docker.sh",
             "sudo chmod +x get-docker.sh",
             "sudo sh get-docker.sh",
-            "docker-compose --version",
+            "sudo docker --version",
             "sudo curl -L https://github.com/docker/compose/releases/download/v2.4.1/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose",
             "sudo chmod +x /usr/local/bin/docker-compose",
-            "docker-compose --version"
+            "sudo docker-compose --version",
+            "sudo mkdir devops-teste",
+            "sudo chmod 777 devops-teste",
+            "cd ~/devops-teste"
         ]
+    }
+
+# Copiando docker-compose para instância EC2
+    provisioner "file" {
+        source      = "../../devops-teste/"
+        destination = "devops-teste/"
     }
 }
 
