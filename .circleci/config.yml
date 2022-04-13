@@ -56,10 +56,10 @@ jobs:
       - run:
           name: authenticate instance EC2 in github package
           working_directory: ~/project/app
-          command:  ssh -o StrictHostKeyChecking=no ubuntu@outputs.tf sudo docker login ghcr.io -u aleciofrjr --password ${GIT_HUB_PKGS} 
+          command:  ssh -o StrictHostKeyChecking=no ubuntu@${outputs.tf} "sudo docker login ghcr.io -u aleciofrjr --password ${GIT_HUB_PKGS}"
       - run:
           name: Execute docker-compose
-          command: ssh -o StrictHostKeyChecking=no ubuntu@<outputs.tf "cd devops-teste && sudo docker-compose up"
+          command: ssh -o StrictHostKeyChecking=no ubuntu@{outputs.tf} "cd devops-teste && sudo docker-compose up"
 workflows:
   build_and_test:
     jobs:
