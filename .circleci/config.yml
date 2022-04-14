@@ -57,16 +57,11 @@ jobs:
             name: authenticate github package
             command: docker login ghcr.io -u aleciofrjr --password ${GIT_HUB_PKGS}      
       - run:
-          name: terraform init
-          working_directory: ~/project/app
+          name: Execute terraform
+          working_directory: ~/project
           command: |
-            ls ~/devops-teste
-            cd ~/devops-teste/terraform
+            cd terraform
             terraform init
-      - run:
-          name: terraform apply
-          command: |
-            cd ~/devops-teste/terraform
             terraform apply --auto-approve
 workflows:
   build_and_test:
