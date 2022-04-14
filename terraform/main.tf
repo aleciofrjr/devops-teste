@@ -45,7 +45,6 @@ resource "aws_instance" "ubuntu_server" {
             "sudo docker-compose --version",
             "sudo mkdir devops-teste",
             "sudo chmod 777 devops-teste",
-            "sudo docker login ghcr.io -u aleciofrjr --password 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",
         ]
     }
 
